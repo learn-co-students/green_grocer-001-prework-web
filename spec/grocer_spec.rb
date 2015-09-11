@@ -87,7 +87,7 @@ describe "Grocer" do
         cart = Array.new(5, cheese)
         consolidated_cart = consolidate_cart(cart: cart)
         cheese_coupon = find_coupon("CHEESE")
-
+# 
         cheese_result = apply_coupons(cart: consolidated_cart, coupons: [cheese_coupon])
         
         expect(cheese_result["CHEESE"][:price]).to eq(6.50)
