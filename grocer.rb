@@ -65,9 +65,11 @@ def checkout(cart: [], coupons: [])
   cart = apply_coupons(cart: cart, coupons: coupons)
   cart = apply_clearance(cart: cart)
   cart.each do |food_item, info_hash|
-    total += info_hash[:price]
+    unless info_hash[:count] == 0
+      total += (info_hash[:price] * info_hash[:count])
+    end
   end
-  #total *= 0.90 if total > 100
+  total *= 0.90 if total > 100
   total
 end
 
