@@ -48,7 +48,7 @@ describe "Grocer" do
   end
 
   describe "#apply_coupons" do
-    context "base case - with perfect coupon (number of items identical):" do
+  context "base case - with perfect coupon (number of items identical):" do
       before(:each) do
         @avocado = find_item('AVOCADO')
         @avocado_coupon = coupons.find { |coupon| coupon[:item] == "AVOCADO" }
