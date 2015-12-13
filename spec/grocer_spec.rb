@@ -178,7 +178,6 @@ describe "Grocer" do
       it "calls on #consolidate_cart before calculating the total for one item" do
         cart = [find_item('BEETS')]
         result = consolidate_cart(cart: cart)
-
         expect(self).to receive(:consolidate_cart).with(cart: cart).and_return(result)
         expect(checkout(cart: cart, coupons: [])).to eq(2.50)
       end
