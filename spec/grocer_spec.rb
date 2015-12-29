@@ -26,6 +26,7 @@ describe "Grocer" do
     it "adds a count of one to each item when there are no duplicates" do
       cart = [find_item('TEMPEH'), find_item('PEANUTBUTTER'), find_item('ALMONDS')]
       result = consolidate_cart(cart: cart)
+
       result.each do |item, attributes|
         expect(attributes.keys).to include(:count)
         expect(attributes[:count]).to eq(1)
@@ -144,6 +145,7 @@ describe "Grocer" do
         coupon = find_coupon("AVOCADO")
         consol_cart = consolidate_cart(cart: [avocado, avocado, avocado, avocado, avocado])
         two_coupon_result = apply_coupons(cart: consol_cart, coupons: [coupon, coupon])
+
         expect(two_coupon_result["AVOCADO"][:count]).to eq(1)
         expect(two_coupon_result["AVOCADO W/COUPON"][:price]).to eq(5.00)
         expect(two_coupon_result["AVOCADO"][:price]).to eq(3.00)

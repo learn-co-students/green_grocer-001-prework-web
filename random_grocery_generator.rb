@@ -22,6 +22,8 @@ def coupons
 	]
 end
 
+# .sample chooses a random item from the array
+
 def generate_cart
 	[].tap do |cart|
 		rand(20).times do
@@ -55,3 +57,6 @@ coupons.each do |coupon|
 end
 
 puts "Your total is #{checkout(cart: cart, coupons: coupons)}"
+
+# Implement a method checkout to calculate total cost of a cart of items and apply discounts and coupons as necessary. 
+# The checkout method will rely on the consolidate_cart, apply_coupons, and the apply_clearance methods.
