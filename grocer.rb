@@ -17,7 +17,7 @@ end
 
 def apply_clearance(cart:[])
   cart.each do |item, info|
-    cart[item][:price] = calc_clearance(info) if info[:clearance] == true
+    cart[item][:price] = calc_clearance(info) if info.fetch(:clearance) == true
   end
   cart
 end
@@ -82,7 +82,7 @@ end
 def calc_total(cart)
   total = 0
   cart.each do |item, info|
-    total += info[:price] * info[:count]
+    total += info.fetch(:price) * info.fetch(:count)
   end
   total > 100 ? (total * 0.9) : total
 end
