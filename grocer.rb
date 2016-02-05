@@ -16,10 +16,9 @@ def apply_coupons(cart:[], coupons:[])
 end
 
 def apply_clearance(cart:[])
-  cart.each do |item, info|
+  cart.each_with_object(cart) do |(item, info),cart|
     cart[item][:price] = calc_clearance(info) if info.fetch(:clearance) == true
   end
-  cart
 end
 
 def checkout(cart:[], coupons:[])
