@@ -11,7 +11,7 @@ end
 
 def apply_coupons(cart:[], coupons:[])
   coupons.each_with_object(cart) do |coupon, cart_w_coupons|
-    cart_w_coupons = apply_coupon(coupon, cart_w_coupons) if cart_w_coupons.keys.include?(coupon.fetch(:item))
+    apply_coupon(coupon, cart_w_coupons) if cart_w_coupons.keys.include?(coupon.fetch(:item))
   end
 end
 
