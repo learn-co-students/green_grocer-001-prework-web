@@ -1,5 +1,7 @@
 require 'pry'
 
+# RUNNER METHOD
+
 def checkout(cart:[], coupons:[])
   sorted_cart = consolidate_cart(cart:cart)
   apply_coupons(cart:sorted_cart, coupons:coupons)
@@ -7,36 +9,46 @@ def checkout(cart:[], coupons:[])
   big_spender_discount(cart:sorted_cart)
 end
 
+# SORTING THE CART
+
+# runner method
 def consolidate_cart(cart:[])
   add_item_counts(cart:cart)
   remove_duplicates(cart:cart)
   cart.inject({}) { |hash, cart_item| hash.merge(cart_item) }
 end
 
+# add counts to all items
 def add_item_counts(cart:[])
   cart.each do |item|
     item.map { |food_item, info| info[:count] = count_item(food_item, cart) }
   end
 end
 
+#a add counts to single item
 def count_item(food_item, cart)
   cart.select { |groceries| groceries.has_key?(food_item) }.count
 end
 
+# delete duplicate items after adding counts
 def remove_duplicates(cart:[])
   cart.uniq
 end
 
+# APPLYING DISCOUNTS
+
+# runner method
 def apply_coupons(cart:[], coupons:[])
   coupons.each { |coupon| apply_coupon(coupon, cart) if valid_coupon?(coupon, cart) }
   cart
 end
 
+# check if coupon applies
 def valid_coupon?(coupon, cart)
   cart.has_key?(coupon[:item]) && cart[coupon[:item]].fetch(:count) >= coupon[:num]
 end
 
-
+# add coupon to cart, decrease item count accordingly
 def apply_coupon(coupon, cart)
   item = coupon.fetch(:item)
   if !cart.has_key?("#{item} W/COUPON")
@@ -47,12 +59,12 @@ def apply_coupon(coupon, cart)
   cart[item][:count] -= coupon[:num]
 end
 
-# Why do we have to return cart at the end?
+# apply clearance discounts
 def apply_clearance(cart:[])
   cart.each { |item, info| info[:price] -= info[:price] * 0.2 if info[:clearance] }
-  cart
 end
 
+# apply discount for spending $100+
 def big_spender_discount(cart:[])
   cart_total = cart.reduce(0.0) { |total, (item, info)| total += info[:price] * info[:count] }
   cart_total > 100 ? cart_total -= cart_total * 0.1 : cart_total
