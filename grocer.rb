@@ -65,10 +65,11 @@ def increment_coupon_count (coupon, cart)
 end
 
 def add_item_w_coupon(coupon, cart)
-  cart["#{coupon.fetch(:item)} W/COUPON"] = cart.fetch(coupon.fetch(:item)).clone
-  cart[coupon.fetch(:item)][:count] -= coupon.fetch(:num)
-  cart["#{coupon.fetch(:item)} W/COUPON"][:count] = 1
-  cart["#{coupon.fetch(:item)} W/COUPON"][:price] = coupon.fetch(:cost)
+  item = coupon.fetch(:item)
+  cart["#{item} W/COUPON"] = cart.fetch(item).clone
+  cart[item][:count] -= coupon.fetch(:num)
+  cart["#{item} W/COUPON"][:count] = 1
+  cart["#{item} W/COUPON"][:price] = coupon.fetch(:cost)
   cart
 end
 
