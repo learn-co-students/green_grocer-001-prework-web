@@ -17,6 +17,7 @@ def consolidate_cart(cart:[])
       end
     end
   end
+  
   new_cart
 end
 
@@ -47,6 +48,7 @@ def apply_coupons(cart:[], coupons:[])
       end
     end
   end
+
   new_cart
 end
 
@@ -56,19 +58,23 @@ def apply_clearance(cart:[])
       info_hash[:price] = (info_hash[:price]*0.8).round(2)
     end
   end
+
   cart
 end
 
 def checkout(cart: [], coupons: [])
   total = 0.00
+
   cart = consolidate_cart(cart: cart)
   cart = apply_coupons(cart: cart, coupons: coupons)
   cart = apply_clearance(cart: cart)
+
   cart.each do |food_item, info_hash|
     unless info_hash[:count] == 0
       total += (info_hash[:price] * info_hash[:count])
     end
   end
+
   total > 100 ? total * 0.90 : total
 end
 
