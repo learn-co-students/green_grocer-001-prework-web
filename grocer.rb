@@ -1,38 +1,5 @@
 require 'pry'
 
-t = [
-      {"AVOCADO" => {:price => 3.00, :clearance => true}},
-      {"KALE" => {:price => 3.00, :clearance => false}},
-      {"BLACK_BEANS" => {:price => 2.50, :clearance => false}},
-      {"ALMONDS" => {:price => 9.00, :clearance => false}},
-      {"TEMPEH" => {:price => 3.00, :clearance => true}},
-      {"CHEESE" => {:price => 6.50, :clearance => false}},
-      {"BEER" => {:price => 13.00, :clearance => false}},
-      {"PEANUTBUTTER" => {:price => 3.00, :clearance => true}},
-      {"BEETS" => {:price => 2.50, :clearance => false}},
-      {"SOY MILK" => {:price => 4.50, :clearance => true}}
-    ]
-
-newCart = [
-    # {"SOY MILK" => {:price => 4.50, :clearance => true}},
-    {"AVOCADO" => {:price => 3.00, :clearance => true}},
-    {"AVOCADO" => {:price => 3.00, :clearance => true}}
-    # {"CHEESE" => {:price => 6.50, :clearance => false}},
-    # {"CHEESE" => {:price => 6.50, :clearance => false}},
-    # {"BEETS" => {:price => 2.50, :clearance => false}},
-    # {"BEETS" => {:price => 2.50, :clearance => false}}
-    # {"CHEESE" => {:price => 6.50, :clearance => false}}
-    # {"BEER" => {:price => 13.00, :clearance => false}},
-    # {"BEER" => {:price => 13.00, :clearance => false}},
-    # {"BEER" => {:price => 13.00, :clearance => false}}
-  ]
-
-coupons = [
-    {:item => "AVOCADO", :num => 2, :cost => 5.00},
-    {:item => "BEER", :num => 2, :cost => 20.00},
-    {:item => "CHEESE", :num => 3, :cost => 15.00}
-  ]
-
 def consolidate_cart(cart:[])
   # code here
   cart.each_with_object({}) do |i, hash|
