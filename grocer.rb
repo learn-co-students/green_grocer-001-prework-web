@@ -15,7 +15,6 @@ def consolidate_cart(cart: [])
   new_cart
 end
 
-
 def apply_coupons(cart:[], coupons:[])
   coupon_hash = {}
 
@@ -43,7 +42,6 @@ def apply_coupons(cart:[], coupons:[])
   cart.merge(coupon_hash)
 end
 
-
 def apply_clearance(cart:[])
   cart.each do |item, attributes|
     if attributes[:clearance] == true
@@ -67,7 +65,3 @@ def checkout(cart: [], coupons: [])
   total *= 0.9 if total > 100
   total
 end
-
-
-
-
