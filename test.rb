@@ -33,7 +33,7 @@ def apply_coupons(cart:[], coupons:[])
            end
       end
   end
- final
+return final
 end
 
 def apply_clearance(cart:[])
@@ -50,16 +50,25 @@ end
 
 def checkout(cart:[], coupons: [])
   # code here
-  consolidate = consolidate_cart(cart: cart)
-  couponed = apply_coupons(cart:consolidate, coupons: coupons)
-  final = apply_clearance(cart:couponed)
+  puts cart
+  apply_clearance(cart:apply_coupons(cart:consolidate_cart(cart:cart), coupons:coupons))
+  puts cart.inspect
   cost = 0.00
-
-  final.each do |k,v|
-      cost += (v[:price]*v[:count]).round(2)
-  end
-  if cost >= 100.00
-    cost = cost *0.9
-  end
-  cost
+  # cart.each do |x|
+  #   x.each do |k,v|
+  #     cost += (v[:price]*v[:count]).round(2)
+  #   end
+  # end
+  # if cost >= 100.00
+  #   cost = cost *0.9
+  # end
+  # cost
 end
+
+cart =   [{"AVOCADO" => {:price => 3.00, :clearance => true}},{"ALMONDS" => {:price => 9.00, :clearance => false}}]
+coupons = [
+      {:item => "AVOCADO", :num => 2, :cost => 5.00},
+      {:item => "BEER", :num => 2, :cost => 20.00},
+      {:item => "CHEESE", :num => 3, :cost => 15.00}
+    ]
+checkout(cart: cart, coupons:coupons)
